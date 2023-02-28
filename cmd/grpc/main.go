@@ -7,6 +7,7 @@ import (
 
 	"github.com/hawi74/grpc-docs/generated"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -58,6 +59,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("cannot listen: %v", err)
 	}
+
+	reflection.Register(grpcServer)
 
 	log.Print("listening on :8000")
 	err = grpcServer.Serve(lis)
