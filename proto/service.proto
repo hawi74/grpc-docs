@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package todos;
+
+option go_package = "github.com/hawi74/grpc-docs/generated";
+
+import "messages.proto";
+import "google/protobuf/empty.proto";
+
+service TodoService {
+    rpc SearchTodo(SearchTodoRequest) returns (SearchTodoResult);
+    rpc CreateTodo(Todo) returns (google.protobuf.Empty);
+}

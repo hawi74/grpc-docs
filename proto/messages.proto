@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package todos;
+
+option go_package = "github.com/hawi74/grpc-docs/generated";
+
+message SearchTodoRequest {
+    string query = 1;
+    int32 page_number = 2;
+    int32 results_per_page = 3;
+}
+
+message Todo {
+    string id = 1;
+    string title = 2;
+    bool done = 3;
+}
+
+message SearchTodoResult {
+    repeated Todo todos = 1;
+    int32 total = 2;
+    int32 total_pages = 3;
+}
