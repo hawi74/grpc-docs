@@ -5,9 +5,18 @@ package todos;
 option go_package = "github.com/hawi74/grpc-docs/generated";
 
 import "messages.proto";
+import "extensions.proto";
 import "google/protobuf/empty.proto";
 
+
 service TodoService {
-    rpc SearchTodo(SearchTodoRequest) returns (SearchTodoResult);
-    rpc CreateTodo(Todo) returns (google.protobuf.Empty);
+    option (extensions.service_description) = "Todo service allows you to create todos and search through them";
+    // SearchTodo returns list of todos that match input query.
+    rpc SearchTodo(SearchTodoRequest) returns (SearchTodoResult) {
+        option (extensions.method_description) = "Docs go here";
+    }
+    // CreateTodo saves provided Todo. Returns nothing on success.
+    rpc CreateTodo(Todo) returns (google.protobuf.Empty) {
+        option (extensions.method_description) = "Docs should go here";
+    }
 }

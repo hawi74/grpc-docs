@@ -4,8 +4,15 @@ package todos;
 
 option go_package = "github.com/hawi74/grpc-docs/generated";
 
+import "extensions.proto";
+
 message SearchTodoRequest {
-    string query = 1;
+    option (extensions.message_description) = "foo"
+    "bar"
+    "baz"
+    "is this a newline?\n"
+    "yes it is\n";
+    string query = 1 [(extensions.field_description) = "query will match todo title"];
     int32 page_number = 2;
     int32 results_per_page = 3;
 }

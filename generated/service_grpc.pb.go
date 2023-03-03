@@ -23,7 +23,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TodoServiceClient interface {
+	// SearchTodo returns list of todos that match input query.
 	SearchTodo(ctx context.Context, in *SearchTodoRequest, opts ...grpc.CallOption) (*SearchTodoResult, error)
+	// CreateTodo saves provided Todo. Returns nothing on success.
 	CreateTodo(ctx context.Context, in *Todo, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -57,7 +59,9 @@ func (c *todoServiceClient) CreateTodo(ctx context.Context, in *Todo, opts ...gr
 // All implementations must embed UnimplementedTodoServiceServer
 // for forward compatibility
 type TodoServiceServer interface {
+	// SearchTodo returns list of todos that match input query.
 	SearchTodo(context.Context, *SearchTodoRequest) (*SearchTodoResult, error)
+	// CreateTodo saves provided Todo. Returns nothing on success.
 	CreateTodo(context.Context, *Todo) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTodoServiceServer()
 }
